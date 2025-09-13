@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import {
   Mail,
   Phone,
@@ -46,7 +46,7 @@ export default function PortfolioOne() {
     availabilityText: "Available for freelance projects",
 
     // Bio
-    bio: "Passionate full-stack developer with 5+ years of experience building scalable web applications. I love turning complex problems into simple, beautiful solutions. When I'm not coding, you'll find me exploring new technologies or contributing to open source projects.",
+    bio: "Passionate full-stack developer with 5+ years of experience building scalable web applications. I love turning complex problems into simple, beautiful solutions. When I&apos;m not coding, you&apos;ll find me exploring new technologies or contributing to open source projects.",
 
     // Social Links
     social: {
@@ -106,7 +106,7 @@ export default function PortfolioOne() {
       id: 4,
       title: "AI Chat Bot",
       description:
-        "An intelligent chatbot powered by OpenAI's GPT, featuring natural language processing and context-aware conversations.",
+        "An intelligent chatbot powered by OpenAI&apos;s GPT, featuring natural language processing and context-aware conversations.",
       image: "https://images.pexels.com/photos/3577561/pexels-photo-3577561.jpeg",
       technologies: ["Python", "FastAPI", "OpenAI API", "React", "WebSocket"],
       liveUrl: "https://ai-chatbot-demo.com",
@@ -187,7 +187,7 @@ export default function PortfolioOne() {
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [projects.length])
 
   const skillCategories = [
     { id: "frontend", name: "Frontend", icon: Palette },
@@ -233,10 +233,13 @@ export default function PortfolioOne() {
             {/* Avatar */}
             <div className="relative mb-8">
               <div className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-gradient-to-r from-orange-500 to-red-500 p-1 bg-gradient-to-r from-orange-500 to-red-500">
-                <img
+                <Image
                   src={userData.avatar || "/placeholder.svg"}
                   alt={userData.name}
+                  width={192}
+                  height={192}
                   className="w-full h-full object-cover rounded-full bg-neutral-800"
+                  priority
                 />
               </div>
 
@@ -283,7 +286,7 @@ export default function PortfolioOne() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
               <a
-                href={'add mail id here'}
+                href={`mailto:${userData.email}`}
                 className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-2xl hover:shadow-orange-500/25 hover:scale-105 flex items-center space-x-3"
               >
                 <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -394,24 +397,24 @@ export default function PortfolioOne() {
                       const <span className="text-blue-400">developer</span> = {"{"}
                     </div>
                     <div className="text-neutral-400 ml-4">
-                      name: <span className="text-green-400">'Chai lover'</span>,
+                      name: <span className="text-green-400">&apos;Chai lover&apos;</span>,
                     </div>
                     <div className="text-neutral-400 ml-4">
-                      title: <span className="text-green-400">'{userData.title}'</span>,
+                      title: <span className="text-green-400">&apos;{userData.title}&apos;</span>,
                     </div>
                     <div className="text-neutral-400 ml-4">
-                      location: <span className="text-green-400">'{userData.location}'</span>,
+                      location: <span className="text-green-400">&apos;{userData.location}&apos;</span>,
                     </div>
                     <div className="text-neutral-400 ml-4">
                       available: <span className="text-orange-400">{userData.availableForHire.toString()}</span>,
                     </div>
                     <div className="text-neutral-400 ml-4">
-                      skills: [<span className="text-green-400">'React'</span>,{" "}
-                      <span className="text-green-400">'Node.js'</span>,{" "}
-                      <span className="text-green-400">'TypeScript'</span>],
+                      skills: [<span className="text-green-400">&apos;React&apos;</span>,{" "}
+                      <span className="text-green-400">&apos;Node.js&apos;</span>,{" "}
+                      <span className="text-green-400">&apos;TypeScript&apos;</span>],
                     </div>
                     <div className="text-neutral-400 ml-4">
-                      passion: <span className="text-green-400">'Building amazing things'</span>
+                      passion: <span className="text-green-400">&apos;Building amazing things&apos;</span>
                     </div>
                     <div className="text-purple-400">{"}"}</div>
                   </div>
@@ -477,7 +480,7 @@ export default function PortfolioOne() {
                   <div className="w-full bg-neutral-800 rounded-full h-2">
                     <div
                       className="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full transition-all duration-1000 ease-out"
-                      style={{ width: "30%"}}
+                      style={{ width: `${skill.level}%` }}
                     ></div>
                   </div>
                 </div>
@@ -513,9 +516,11 @@ export default function PortfolioOne() {
                   className="group bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:scale-105"
                 >
                   <div className="relative overflow-hidden">
-                    <img
+                    <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
+                      width={800}
+                      height={256}
                       className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -604,7 +609,7 @@ export default function PortfolioOne() {
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <p className="text-neutral-300 mb-6 leading-relaxed italic">"{testimonial.content}"</p>
+                  <p className="text-neutral-300 mb-6 leading-relaxed italic">&quot;{testimonial.content}&quot;</p>
                   <div className="flex items-center space-x-4">
                     <div className="text-3xl">{testimonial.avatar}</div>
                     <div>
@@ -628,13 +633,13 @@ export default function PortfolioOne() {
           >
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Let's{" "}
+                Let&apos;s{" "}
                 <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
                   Work Together
                 </span>
               </h2>
               <p className="text-xl text-neutral-300 max-w-2xl mx-auto mb-8">
-                Ready to bring your ideas to life? Let's discuss your next project and create something amazing
+                Ready to bring your ideas to life? Let&apos;s discuss your next project and create something amazing
                 together.
               </p>
             </div>
@@ -649,13 +654,13 @@ export default function PortfolioOne() {
 
                 <h3 className="text-3xl font-bold text-white mb-4">Ready to Start a Project?</h3>
                 <p className="text-lg text-neutral-300 mb-8 max-w-2xl mx-auto">
-                  I'm currently {userData.availableForHire ? "available" : "not available"} for new projects. Let's
+                  I&apos;m currently {userData.availableForHire ? "available" : "not available"} for new projects. Let&apos;s
                   discuss how we can work together to achieve your goals.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
                   <a
-                    href={""}
+                    href={`mailto:${userData.email}`}
                     className="group bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-2xl hover:shadow-orange-500/25 hover:scale-105 flex items-center space-x-3"
                   >
                     <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -663,7 +668,7 @@ export default function PortfolioOne() {
                   </a>
 
                   <a
-                    href={userData.phone}
+                    href={`tel:${userData.phone.replace(/[^+\d]/g, "")}`}
                     className="group border-2 border-neutral-600 hover:border-orange-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center space-x-3 hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-red-500/10"
                   >
                     <Phone className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
@@ -682,7 +687,7 @@ export default function PortfolioOne() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="w-4 h-4 text-green-400" />
-                    <span>Flexible Rates</span>
+                     <span>Flexible Rates</span>
                   </div>
                 </div>
               </div>
@@ -693,4 +698,3 @@ export default function PortfolioOne() {
     </div>
   )
 }
-
